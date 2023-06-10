@@ -2,15 +2,20 @@
 <html>
 <head>
   <title>Nichu Photo Gallery</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <h1>Nichu Photo Gallery</h1>
 
   <div id="gallery">
-    <div class="photo-container">
-      <input type="file" accept="image/*" onchange="handleFileUpload(event)">
+    <div class="upload-container">
+      <label for="file-upload" class="upload-label">
+        <i class="fas fa-cloud-upload-alt"></i> Upload Photo
+      </label>
+      <input type="file" id="file-upload" accept="image/*">
     </div>
+    <div id="photo-grid"></div>
   </div>
 
   <script src="script.js"></script>

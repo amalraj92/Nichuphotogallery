@@ -1,23 +1,26 @@
+const fileUpload = document.getElementById('file-upload');
+const photoGrid = document.getElementById('photo-grid');
+
+fileUpload.addEventListener('change', handleFileUpload);
+
 function handleFileUpload(event) {
   const file = event.target.files[0];
 
   if (file) {
     const reader = new FileReader();
 
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       const imageSrc = e.target.result;
       const imageAlt = file.name;
 
-      addPhotoContainer(imageSrc, imageAlt);
+      addPhoto(imageSrc, imageAlt);
     };
 
     reader.readAsDataURL(file);
   }
 }
 
-function addPhotoContainer(imageSrc, imageAlt) {
-  const gallery = document.getElementById('gallery');
-
+function addPhoto(imageSrc, imageAlt) {
   const photoContainer = document.createElement('div');
   photoContainer.classList.add('photo-container');
 
@@ -25,6 +28,15 @@ function addPhotoContainer(imageSrc, imageAlt) {
   img.src = imageSrc;
   img.alt = imageAlt;
 
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-button');
+  deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+
+  deleteButton.addEventListener('click', function () {
+    photoContainer.remove();
+  });
+
   photoContainer.appendChild(img);
-  gallery.appendChild(photoContainer);
+  photoContainer.appendChild(deleteButton);
+  photoGrid.appendChild(photoContainer);
 }
